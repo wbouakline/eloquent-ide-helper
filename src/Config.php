@@ -17,23 +17,107 @@ class Config implements ArrayAccess {
 		$this->config = $config;
 	}
 
-	public function get($key, mixed $defaultVaue) {
-		return Arr::get($this->config, $key, $defaultVaue);
-	}
+    /**
+     * Data
+     *
+     * @var array
+     * @access private
+     */
+    private $data = [];
 
-	public function offsetExists($offset): bool{
-		throw new RuntimeException('Not implemented because we didn\'t need it yet');
-	}
+    /**
+     * Get a data by key
+     *
+     * @param string The key data to retrieve
+     * @access public
+     */
+    public function &__get ($key) {
+        return $this->data[$key];
+    }
 
-	public function offsetGet($offset): int {
-		throw new RuntimeException('Not implemented because we didn\'t need it yet');
-	}
+    /**
+     * Assigns a value to the specified data
+     * 
+     * @param string The data key to assign the value to
+     * @param mixed  The value to set
+     * @access public 
+     */
+    public function __set($key,$value) {
+        $this->data[$key] = $value;
+    }
 
-	public function offsetSet($offset, $value): void {
-		throw new RuntimeException('Not implemented because we didn\'t need it yet');
-	}
+    /**
+     * Whether or not an data exists by key
+     *
+     * @param string An data key to check for
+     * @access public
+     * @return boolean
+     * @abstracting ArrayAccess
+     */
+    public function __isset ($key) {
+        return isset($this->data[$key]);
+    }
 
-	public function offsetUnset($offset): void {
-		throw new RuntimeException('Not implemented because we didn\'t need it yet');
-	}
+    /**
+     * Unsets an data by key
+     *
+     * @param string The key to unset
+     * @access public
+     */
+    public function __unset($key) {
+        unset($this->data[$key]);
+    }
+
+    /**
+     * Assigns a value to the specified offset
+     *
+     * @param string The offset to assign the value to
+     * @param mixed  The value to set
+     * @access public
+     * @abstracting ArrayAccess
+     */
+    public function offsetSet(mixed $offset, mixed $value): void {
+        if (is_null($offset)) {
+            $this->data[] = $value;
+        } else {
+            $this->data[$offset] = $value;
+        }
+    }
+
+    /**
+     * Whether or not an offset exists
+     *
+     * @param string An offset to check for
+     * @access public
+     * @return boolean
+     * @abstracting ArrayAccess
+     */
+    public function offsetExists(mixed $offset): bool {
+        return isset($this->data[$offset]);
+    }
+
+    /**
+     * Unsets an offset
+     *
+     * @param string The offset to unset
+     * @access public
+     * @abstracting ArrayAccess
+     */
+    public function offsetUnset(mixed $offset): void {
+        if ($this->offsetExists($offset)) {
+            unset($this->data[$offset]);
+        }
+    }
+
+    /**
+     * Returns the value at specified offset
+     *
+     * @param string The offset to retrieve
+     * @access public
+     * @return mixed
+     * @abstracting ArrayAccess
+     */
+    public function offsetGet(mixed $offset): mixed {
+        return $this->offsetExists($offset) ? $this->data[$offset] : null;
+    }
 }
