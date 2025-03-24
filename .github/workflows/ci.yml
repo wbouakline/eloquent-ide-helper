@@ -11,7 +11,7 @@ jobs:
   test:
     strategy:
       matrix:
-        PHP: [56, 73, 74, 80]
+        PHP: [73, 74, 80]
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,6 @@ jobs:
           docker compose logs php
 
       - name: Install PHP Stan
-        if: matrix.PHP != '56'
         run: |
           docker compose exec -T php composer require phpstan/phpstan --dev
 
@@ -44,12 +43,10 @@ jobs:
           docker compose exec -T php composer test
 
       - name: Run PHP Stan
-        if: matrix.PHP != '56'
         run: |
           docker compose exec -T php composer analyse
 
       - name: Run PHP CS Fixer
-        if: matrix.PHP != '56'
         run: |
           docker compose exec -T php composer fix:ci
 
