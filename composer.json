@@ -2,6 +2,7 @@
     "name": "wbouakline/eloquent-ide-helper",
     "type": "library",
     "description": "Using `barryvdh/laravel-ide-helper` without laravel framework.",
+    "version": "1.0.0",
     "require": {
         "php": ">=5.6",
         "barryvdh/laravel-ide-helper": "^2.8",
