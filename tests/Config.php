@@ -44,4 +44,14 @@ class Config implements DatabaseConfig {
 	public function getFakerProviders() {
 		return [];
 	}
+
+	public function getCharset()
+	{
+		return 'utf8';
+	}
+
+	public function getCollation()
+	{
+		return 'utf8_unicode_ci';
+	}
 }

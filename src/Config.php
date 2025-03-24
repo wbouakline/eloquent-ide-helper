@@ -21,19 +21,19 @@ class Config implements ArrayAccess {
 		return Arr::get($this->config, $key, $defaultVaue);
 	}
 
-	public function offsetExists($offset) {
+	public function offsetExists($offset): bool{
 		throw new RuntimeException('Not implemented because we didn\'t need it yet');
 	}
 
-	public function offsetGet($offset) {
-		return $this->get($offset);
-	}
-
-	public function offsetSet($offset, $value) {
+	public function offsetGet($offset): int {
 		throw new RuntimeException('Not implemented because we didn\'t need it yet');
 	}
 
-	public function offsetUnset($offset) {
+	public function offsetSet($offset, $value): void {
+		throw new RuntimeException('Not implemented because we didn\'t need it yet');
+	}
+
+	public function offsetUnset($offset): void {
 		throw new RuntimeException('Not implemented because we didn\'t need it yet');
 	}
 }
