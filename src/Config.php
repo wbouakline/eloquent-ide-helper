@@ -17,7 +17,7 @@ class Config implements ArrayAccess {
 		$this->config = $config;
 	}
 
-	public function get($key, mixed $defaultVaue): mixed {
+	public function get($key, mixed $defaultVaue) {
 		return Arr::get($this->config, $key, $defaultVaue);
 	}
 
