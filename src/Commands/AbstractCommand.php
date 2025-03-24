@@ -34,7 +34,6 @@ abstract class AbstractCommand extends Command {
 			throw new LogicException("Config file not found. Filename: {$src}.");
 		}
 
-		/* @var $config Config */
 		$config = include($src);
 
 		if (! $config instanceof Config) {
@@ -45,6 +44,8 @@ abstract class AbstractCommand extends Command {
 
 		$this->style->title('Reading configurations...');
 		$this->style->text('Using base path: ' . base_path());
-		$this->style->text('Using models folders: ' . join(', ', is_array($config['ide-helper.model_locations']) ? $config['ide-helper.model_locations'] : []));
+
+		/** @phpstan-ignore argument.type */
+		$this->style->text('Using models folders: ' . join(', ', $config['ide-helper.model_locations']));
 	}
 }
