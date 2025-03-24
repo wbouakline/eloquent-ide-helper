@@ -44,8 +44,6 @@ abstract class AbstractCommand extends Command {
 
 		$this->style->title('Reading configurations...');
 		$this->style->text('Using base path: ' . base_path());
-
-		/** @phpstan-ignore argument.type */
-		// $this->style->text('Using models folders: ' . join(', ', $config['ide-helper.model_locations']));
+		$this->style->text('Using models folders: ' . join(', ', $config['ide-helper.model_locations']));
 	}
 }
