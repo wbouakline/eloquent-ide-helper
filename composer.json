@@ -1,5 +1,5 @@
 {
-    "name": "likesistemas/eloquent-ide-helper",
+    "name": "wbouakline/eloquent-ide-helper",
     "type": "library",
     "description": "Using `barryvdh/laravel-ide-helper` without laravel framework.",
     "require": {
