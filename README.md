@@ -3,7 +3,7 @@
 ## Installation
 
 ```shell
-composer require --dev likesistemas/eloquent-ide-helper
+composer require --dev wbouakline/eloquent-ide-helper
 ```
 
 ## How to configure?
